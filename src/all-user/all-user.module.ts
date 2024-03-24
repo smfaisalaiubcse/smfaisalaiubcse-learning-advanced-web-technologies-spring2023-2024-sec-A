@@ -3,8 +3,9 @@ import { AllUsersService } from './all-user.service';
 import { AllUsersController } from './all-user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AllUser } from './entities/all-user.entity';
+import { JwtModule, JwtService } from '@nestjs/jwt'
 @Module({
-  imports: [TypeOrmModule.forFeature([AllUser])],
+  imports: [TypeOrmModule.forFeature([AllUser]), JwtModule.register({ secret: 'secret101' })],
   controllers: [AllUsersController],
   providers: [AllUsersService],
   exports: [AllUsersService]

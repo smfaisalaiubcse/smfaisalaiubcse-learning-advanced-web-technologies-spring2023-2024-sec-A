@@ -47,20 +47,66 @@ const AddFlight = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="airline" placeholder="Airline" value={flightData.airline} onChange={handleInputChange} />
-                <input type="datetime-local" name="departureDateTime" placeholder="Departure Date & Time" value={flightData.departureDateTime} onChange={handleInputChange} />
-                <input type="datetime-local" name="arrivalDateTime" placeholder="Arrival Date & Time" value={flightData.arrivalDateTime} onChange={handleInputChange} />
-                <input type="text" name="origin" placeholder="Origin" value={flightData.origin} onChange={handleInputChange} />
-                <input type="text" name="destination" placeholder="Destination" value={flightData.destination} onChange={handleInputChange} />
-                <input type="number" name="price" placeholder="Price" value={flightData.price} onChange={handleInputChange} />
-                <button type="submit">Add Flight</button>
-                {error && <p>{error}</p>}
+        <div className="max-w-lg mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <input
+                    type="text"
+                    name="airline"
+                    placeholder="Airline"
+                    value={flightData.airline}
+                    onChange={handleInputChange}
+                    className="block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-400"
+                />
+                <input
+                    type="datetime-local"
+                    name="departureDateTime"
+                    placeholder="Departure Date & Time"
+                    value={flightData.departureDateTime}
+                    onChange={handleInputChange}
+                    className="block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-400"
+                />
+                <input
+                    type="datetime-local"
+                    name="arrivalDateTime"
+                    placeholder="Arrival Date & Time"
+                    value={flightData.arrivalDateTime}
+                    onChange={handleInputChange}
+                    className="block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-400"
+                />
+                <input
+                    type="text"
+                    name="origin"
+                    placeholder="Origin"
+                    value={flightData.origin}
+                    onChange={handleInputChange}
+                    className="block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-400"
+                />
+                <input
+                    type="text"
+                    name="destination"
+                    placeholder="Destination"
+                    value={flightData.destination}
+                    onChange={handleInputChange}
+                    className="block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-400"
+                />
+                <input
+                    type="number"
+                    name="price"
+                    placeholder="Price"
+                    value={flightData.price}
+                    onChange={handleInputChange}
+                    className="block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-400"
+                />
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                >
+                    Add Flight
+                </button>
+                {error && <p className="text-red-500">{error}</p>}
             </form>
             {successMessage && <p>{successMessage}</p>}
         </div>
-
     );
 };
 

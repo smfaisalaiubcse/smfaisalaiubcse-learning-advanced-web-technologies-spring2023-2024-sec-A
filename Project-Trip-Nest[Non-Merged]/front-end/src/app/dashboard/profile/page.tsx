@@ -1,9 +1,9 @@
-// dashboard/page.tsx
 "use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-const DashboardPage = () => {
+
+const ProfilePage = () => {
   const [userData, setUserData] = useState(null);
   const [error, setError] = useState('');
   const router = useRouter();
@@ -11,10 +11,9 @@ const DashboardPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Fetch user data from the backend
         const response = await axios.get('http://localhost:3000/all-users/profile', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Send the access token with the request
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         });
         setUserData(response.data);
@@ -27,30 +26,26 @@ const DashboardPage = () => {
     fetchUserData();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    router.push('/login');
-  };
-
   return (
-    <div>
-      <h1>Profile</h1>
-      {error && <p>{error}</p>}
-      {userData && (
-        <div>
-          <p>ID: {userData.id}</p>
-          <p>User Type: {userData.usertype}</p>
-          <p>First Name: {userData.firstname}</p>
-          <p>Last Name: {userData.lastname}</p>
-          <p>Mobile: {userData.mobile}</p>
-          <p>Email: {userData.email}</p>
-          <p>Gender: {userData.gender}</p>
-          <p>Username: {userData.username}</p>
-          <button onClick={handleLogout}>Logout</button>
-        </div>
-      )}
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+        <h1 className="text-3xl text-center text-blue-500 font-bold mb-6">Profile</h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {userData && (
+          <div>
+            <p className="mb-2"><span className="font-bold">ID:</span> {userData.id}</p>
+            <p className="mb-2"><span className="font-bold">User Type:</span> {userData.usertype}</p>
+            <p className="mb-2"><span className="font-bold">First Name:</span> {userData.firstname}</p>
+            <p className="mb-2"><span className="font-bold">Last Name:</span> {userData.lastname}</p>
+            <p className="mb-2"><span className="font-bold">Mobile:</span> {userData.mobile}</p>
+            <p className="mb-2"><span className="font-bold">Email:</span> {userData.email}</p>
+            <p className="mb-2"><span className="font-bold">Gender:</span> {userData.gender}</p>
+            <p className="mb-2"><span className="font-bold">Username:</span> {userData.username}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default DashboardPage;
+export default ProfilePage;

@@ -45,18 +45,59 @@ const AddVehicle = () => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="make" placeholder="Make" value={vehicleData.make} onChange={handleInputChange} />
-                <input type="text" name="model" placeholder="Model" value={vehicleData.model} onChange={handleInputChange} />
-                <input type="number" name="year" placeholder="Year" value={vehicleData.year} onChange={handleInputChange} />
-                <input type="text" name="type" placeholder="Type" value={vehicleData.type} onChange={handleInputChange} />
-                <input type="number" name="pricePerDay" placeholder="Price Per Day" value={vehicleData.pricePerDay} onChange={handleInputChange} />
-                <button type="submit">Add vehicle</button>
-                {error && <p>{error}</p>}
+        <div className="max-w-lg mx-auto">
+            <form onSubmit={handleSubmit} className="space-y-4">
+                <input
+                    type="text"
+                    name="make"
+                    placeholder="Make"
+                    value={vehicleData.make}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500 text-black"
+                />
+                <input
+                    type="text"
+                    name="model"
+                    placeholder="Model"
+                    value={vehicleData.model}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500 text-black"
+                />
+                <input
+                    type="number"
+                    name="year"
+                    placeholder="Year"
+                    value={vehicleData.year}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500 text-black"
+                />
+                <input
+                    type="text"
+                    name="type"
+                    placeholder="Type"
+                    value={vehicleData.type}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500 text-black"
+                />
+                <input
+                    type="number"
+                    name="pricePerDay"
+                    placeholder="Price Per Day"
+                    value={vehicleData.pricePerDay}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500 text-black"
+                />
+                <button
+                    type="submit"
+                    className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                >
+                    Add Vehicle
+                </button>
+                {error && <p className="text-red-500">{error}</p>}
             </form>
             {successMessage && <p>{successMessage}</p>}
         </div>
+
     );
 };
 

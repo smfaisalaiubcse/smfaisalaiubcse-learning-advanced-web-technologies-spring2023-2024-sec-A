@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import Link from 'next/link';
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -27,26 +28,34 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      {error && <p>{error}</p>}
-      <input 
-        type="text" 
-        placeholder="Username" 
-        value={username} 
-        onChange={(e) => setUsername(e.target.value)} 
-      />
-      <br></br>
-      <br></br>
-      <input 
-        type="password" 
-        placeholder="Password" 
-        value={password} 
-        onChange={(e) => setPassword(e.target.value)} 
-      />
-      <br></br>
-      <br></br>
-      <button onClick={handleLogin}>Login</button>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+        <h1 className="text-3xl text-center text-blue-500 font-bold mb-6">Login</h1>
+        {error && <p className="text-red-500 mb-4">{error}</p>}
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500 text-black"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full px-4 py-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500  text-black"
+        />
+        <button
+          onClick={handleLogin}
+          className="w-full bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+        >
+          Login
+        </button>
+        <p className="text-center mt-4">
+          <Link className="text-blue-500 hover:underline cursor-pointer" href="/registration">Don't have an account?</Link>
+        </p>
+      </div>
     </div>
   );
 };

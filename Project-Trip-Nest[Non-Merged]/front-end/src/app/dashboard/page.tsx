@@ -1,10 +1,9 @@
 import React from 'react';
 
-const Dashboard = ({children}) => {
+const Dashboard = () => {
     return (
         <div  suppressHydrationWarning={true}>
             <h1>This is Dashboard</h1>
-            {children}
         </div>
     );
 };

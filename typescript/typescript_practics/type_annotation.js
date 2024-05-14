@@ -1,0 +1,11 @@
+var p = { id: 10, name: "jhon" };
+console.log(p);
+console.log(p.name);
+console.log(p.id);
+console.log(p.id);
+var y;
+y = 10;
+console.log("this is a string");
+var z;
+z = "Redd";
+console.log(z);

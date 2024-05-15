@@ -1,4 +1,3 @@
-// pages/update-room/[roomId].js
 "use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -13,13 +12,10 @@ const UpdateRoom = ({ params }: { params: { roomId: string } }) => {
   });
   const [error, setError] = useState('');
   const router = useRouter();
-  // const { roomId } = router.query;
+  
 
   const handleInputChange = (e) => {
-    // If the input name is capacity or pricePerNight, parse the value to an integer
     const value = e.target.name === 'capacity' || e.target.name === 'pricePerNight' ? parseInt(e.target.value) : e.target.value;
-
-    // Update the roomData state with the new value
     setRoomData({ ...roomData, [e.target.name]: value });
   };
 
@@ -30,8 +26,8 @@ const UpdateRoom = ({ params }: { params: { roomId: string } }) => {
       try {
         const response = await axios.get(`http://localhost:3000/agency/room/${params.roomId}`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Send the access token with the request
-            'Content-Type': 'application/json' // Specify the content type as JSON
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            'Content-Type': 'application/json'
           },
         });
 
@@ -63,7 +59,7 @@ const UpdateRoom = ({ params }: { params: { roomId: string } }) => {
       router.push('/dashboard/view-added-rooms');
     } catch (error) {
       setError('Error updating room data');
-      console.error('Error:', error); // Log the error to the console
+      console.error('Error:', error); 
     }
   };
 

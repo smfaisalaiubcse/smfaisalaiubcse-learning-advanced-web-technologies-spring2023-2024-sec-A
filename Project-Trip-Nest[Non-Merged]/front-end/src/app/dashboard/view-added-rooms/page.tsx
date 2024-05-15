@@ -1,3 +1,4 @@
+// ViewAddedRoomsPage.js
 "use client"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -12,10 +13,9 @@ const ViewAddedRoomsPage = () => {
   useEffect(() => {
     const fetchRooms = async () => {
       try {
-        // Fetch rooms data from the backend
         const response = await axios.get('http://localhost:3000/agency/room', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`, // Send the access token with the request
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         });
         setRooms(response.data);
@@ -29,6 +29,10 @@ const ViewAddedRoomsPage = () => {
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
+  };
+
+  const handleUpdateClick = (roomId) => {
+    router.push(`/dashboard/update-room/${roomId}`);
   };
 
   const filteredRooms = rooms.filter(room =>
@@ -56,6 +60,12 @@ const ViewAddedRoomsPage = () => {
               <p>Description: {room.description}</p>
               <p>Capacity: {room.capacity}</p>
               <p>Price Per Night: {room.pricePerNight}</p>
+              <button
+                onClick={() => handleUpdateClick(room.id)}
+                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+              >
+                Update
+              </button>
             </div>
           ))}
         </div>

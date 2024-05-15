@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 import { AgencyService } from './agency.service';
 import { AddRoomDto, AddFlightDto, AddVehicleDto } from './dto/create-agency.dto';
+import { UpdateRoomDto, UpdateFlightDto, UpdateVehicleDto } from './dto/update-agency.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { OwnUserGuard } from 'src/all-user/own-user.guard';
 
@@ -72,5 +73,39 @@ export class AgencyController {
   async addVehicle(@Body(ValidationPipe) addVehicleDto: AddVehicleDto, @Request() req) {
     const username = req.user.username;
     return await this.agencyService.addVehicle(addVehicleDto, username);
+  }
+
+  @UseGuards(AuthGuard)
+  @Patch('update-room/:id')
+  @HttpCode(HttpStatus.CREATED)
+  async updateRoom(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) updateRoomDto: UpdateRoomDto,
+    @Request() req: any,
+  ) {
+    const username = req.user.username;
+    return await this.agencyService.updateRoom(id, username, updateRoomDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Patch('update-flight/:id')
+  async updateFlight(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) updateFlightDto: UpdateFlightDto,
+    @Request() req: any,
+  ) {
+    const username = req.user.username;
+    return await this.agencyService.updateFlight(id, username, updateFlightDto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Patch('update-vehicle/:id')
+  async updateVehicle(
+    @Param('id', ParseIntPipe) id: number,
+    @Body(ValidationPipe) updateVehicleDto: UpdateVehicleDto,
+    @Request() req: any,
+  ) {
+    const username = req.user.username;
+    return await this.agencyService.updateVehicle(id, username, updateVehicleDto);
   }
 }

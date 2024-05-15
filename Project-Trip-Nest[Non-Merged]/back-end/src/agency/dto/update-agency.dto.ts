@@ -1,4 +1,6 @@
-// import { PartialType } from '@nestjs/mapped-types';
-// import { CreateAgencyDto } from './create-agency.dto';
+import { PartialType } from '@nestjs/mapped-types';
+import { AddRoomDto, AddFlightDto, AddVehicleDto } from './create-agency.dto';
 
-// export class UpdateAgencyDto extends PartialType(CreateAgencyDto) {}
+export class UpdateRoomDto extends PartialType(AddRoomDto) {}
+export class UpdateFlightDto extends PartialType(AddFlightDto) {}
+export class UpdateVehicleDto extends PartialType(AddVehicleDto) {}

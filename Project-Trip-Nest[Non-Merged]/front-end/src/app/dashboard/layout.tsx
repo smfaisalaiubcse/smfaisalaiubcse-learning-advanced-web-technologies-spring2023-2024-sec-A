@@ -34,7 +34,7 @@ export default function Layout({
     router.push('/login');
   };
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex bg-gray-100">
       <div className="w-64 bg-blue-600 text-white p-4 space-y-4"> {/* Added Tailwind CSS classes */}
         {error && <p>{error}</p>}
         {userData && (

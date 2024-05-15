@@ -29,7 +29,7 @@ const AddRoom = () => {
                 },
             });
             console.log(response.data);
-            setSuccessMessage('Flight added successfully!');
+            setSuccessMessage('Room added successfully!');
             console.log("Room added");
             setRoomData({
                 name: '',

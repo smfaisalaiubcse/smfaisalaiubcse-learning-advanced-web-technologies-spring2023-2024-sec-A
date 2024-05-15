@@ -1,9 +1,11 @@
 import { Injectable, ConflictException, NotFoundException } from '@nestjs/common';
 import { AddRoomDto, AddFlightDto, AddVehicleDto } from './dto/create-agency.dto';
+import { UpdateRoomDto, UpdateFlightDto, UpdateVehicleDto } from './dto/update-agency.dto';
 import { Repository } from 'typeorm'; 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Room, Flight, Vehicle } from './entities/agency.entity';
 import { AllUser } from '../all-user/entities/all-user.entity';
+import { userInfo } from 'os';
 @Injectable()
 export class AgencyService {
   constructor(
@@ -121,4 +123,59 @@ export class AgencyService {
 
     return this.vehicleRepository.save(newVehicle);
   }
+
+  async updateRoom(id: number, username: string, updateRoomDto: UpdateRoomDto): Promise<Room> {
+    const room = await this.getRoomById(id);
+    if (!room) {
+      throw new NotFoundException(`Room with ID ${id} not found`);
+    }
+    
+    // Update room properties
+    room.name = updateRoomDto.name;
+    room.description = updateRoomDto.description;
+    room.capacity = updateRoomDto.capacity;
+    room.pricePerNight = updateRoomDto.pricePerNight;
+    room.username = username;
+  
+    // Save the updated room
+    return this.roomRepository.save(room);
+  }
+  
+
+  async updateFlight(id: number, username: string, updateFlightDto: UpdateFlightDto): Promise<Flight> {
+    const flight = await this.getFlightById(id);
+    if (!flight) {
+      throw new NotFoundException(`Flight with ID ${id} not found`);
+    }
+    
+    // Update flight properties
+    flight.airline = updateFlightDto.airline;
+    flight.departureDateTime = updateFlightDto.departureDateTime;
+    flight.arrivalDateTime = updateFlightDto.arrivalDateTime;
+    flight.origin = updateFlightDto.origin;
+    flight.destination = updateFlightDto.destination;
+    flight.price = updateFlightDto.price;
+    flight.username = username;
+    // Save the updated flight
+    return this.flightRepository.save(flight);
+  }
+  
+  async updateVehicle(id: number, username: string, updateVehicleDto: UpdateVehicleDto): Promise<Vehicle> {
+    const vehicle = await this.getVehicleById(id);
+    if (!vehicle) {
+      throw new NotFoundException(`Vehicle with ID ${id} not found`);
+    }
+    
+    // Update vehicle properties
+    vehicle.make = updateVehicleDto.make;
+    vehicle.model = updateVehicleDto.model;
+    vehicle.year = updateVehicleDto.year;
+    vehicle.type = updateVehicleDto.type;
+    vehicle.pricePerDay = updateVehicleDto.pricePerDay;
+    vehicle.username = username;
+    // Save the updated vehicle
+    return this.vehicleRepository.save(vehicle);
+  }
+  
+  
 }

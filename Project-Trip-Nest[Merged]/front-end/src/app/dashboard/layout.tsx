@@ -50,10 +50,22 @@ export default function Layout({
                   <Link href="/dashboard/view-all-users">View All Users</Link>
                 </li>
                 <li>
+                  <Link href="/dashboard/update-user">Update User</Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/add-admin">Add Admin</Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/delete-user">Delete User</Link>
+                </li>
+                <li>
                   <Link href="/dashboard/Faq/addfaq">Add FAQ</Link>
                 </li>
                 <li>
                   <Link href="/dashboard/profile">Profile</Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/about">About</Link>
                 </li>
               </ul>
             </nav>
@@ -93,6 +105,9 @@ export default function Layout({
                 <li>
                   <Link href="/dashboard/Faq/showfaq">Show FAQ</Link>
                 </li>
+                <li>
+                  <Link href="/dashboard/about">About</Link>
+                </li>
               </ul>
             </nav>
           )
@@ -108,7 +123,13 @@ export default function Layout({
                   <Link className="hover:text-blue-100" href="/dashboard/Booking">Booking</Link>
                 </li>
                 <li>
+                  <Link href="/dashboard/deposit-money">Deposit Money</Link>
+                </li>
+                <li>
                   <Link href="/dashboard/Faq/showfaq">Show FAQ</Link>
+                </li>
+                <li>
+                  <Link href="/dashboard/about">About</Link>
                 </li>
               </ul>
             </nav>

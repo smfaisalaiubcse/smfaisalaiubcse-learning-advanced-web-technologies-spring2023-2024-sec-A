@@ -12,6 +12,12 @@ import { CreateFaqDto } from "../faq/dto/create-faq.dto";
 
 @Injectable()
 export class UsersService {
+  updateUserAccountBalance(email: string, amount: number) {
+    throw new Error('Method not implemented.');
+  }
+  findOne(arg0: number) {
+    throw new Error('Method not implemented.');
+  }
   constructor(
 
     @InjectRepository(Rooms) private readonly roomRepo: Repository<Rooms>,

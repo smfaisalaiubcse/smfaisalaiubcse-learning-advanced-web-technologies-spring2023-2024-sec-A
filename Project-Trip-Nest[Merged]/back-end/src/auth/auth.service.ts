@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
-import { JwtService } from '@nestjs/jwt'
+import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { AllUser } from '../all-user/entities/all-user.entity';
@@ -15,14 +16,17 @@ export class AuthService {
     @InjectRepository(AllUser)
     private allUserRepository: Repository<AllUser>,
     private readonly allUserService: AllUsersService,
-    private jwtServices: JwtService
-  ) { }
+    private jwtServices: JwtService,
+  ) {}
 
   // async validateUser(username: string, password: string): Promise<AllUser> {
   //   return await this.allUserRepository.findOne({ where: { username, password } });
   // }
 
-  async validateUser(username: string, password: string): Promise<AllUser | null> {
+  async validateUser(
+    username: string,
+    password: string,
+  ): Promise<AllUser | null> {
     const user = await this.allUserRepository.findOne({ where: { username } });
 
     if (!user) {
@@ -42,7 +46,6 @@ export class AuthService {
     }
   }
 
-
   async login(user: any) {
     const userInDb = await this.validateUser(user.username, user.password);
     if (!userInDb) {
@@ -54,5 +57,3 @@ export class AuthService {
     };
   }
 }
-
-
